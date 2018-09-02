@@ -15,7 +15,7 @@ module.exports = {
         path: path.join(__dirname, '../dist')
     },
     devServer: {
-        host: 'abc.ksyun.com',
+        host: 'a.com',
         port: 8001,
         // open: true, //自trademanage动打开浏览器，不需要可以去掉
         proxy: {//接口代理
