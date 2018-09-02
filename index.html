@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="金山云">
+	<meta name="description" content="金山云">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Manage</title>
+</head>
+<body>
+	<div id="app">
+		<!-- <transition>
+			<router-view></router-view>
+		</transition> -->
+		<transition>
+			<keep-alive>
+				<router-view  v-if="$route.meta.keepAlive"></router-view>
+			</keep-alive>
+		</transition>
+		<transition>
+			<router-view  v-if="!$route.meta.keepAlive"></router-view>
+		</transition>
+	</div> 
+    <!-- <script src="https://ks3-cn-beijing.ksyun.com/ksyunfe/web/uss/uss_frame.js"></script> -->
+    <script type="text/javascript" src="./dist/js/vendors.js"></script>
+    <script type="text/javascript" src="./dist/js/main.js"></script>
+</body>
+</html>
