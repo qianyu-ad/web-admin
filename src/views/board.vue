@@ -51,8 +51,9 @@
             <div class="q-aside-logo"></div>
             <ul class="q-aside-product">
                 <li class="q-aside-product-item" :class="{'active':$route.name=='pages_list'}" @click="go('pages_list')">页面管理</li>
-                <li class="q-aside-product-item" :class="{'active':$route.name=='pages_add'}" @click="go('pages_add')">页面管理</li>
+                <li class="q-aside-product-item" :class="{'active':$route.name=='pages_add'}" @click="go('pages_add')">新增页面</li>
                 <li class="q-aside-product-item" :class="{'active':$route.name=='category_list'}" @click="go('category_list')">分类管理</li>
+                <li class="q-aside-product-item" :class="{'active':$route.name=='seo_list'}" @click="go('seo_list')">SEO设置</li>
             </ul>
         </aside>
         <div class="q-content">
