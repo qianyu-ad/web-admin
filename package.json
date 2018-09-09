@@ -7,7 +7,6 @@
     "init": "webpack --progress --config tools/console.dev.config.js",
     "dev": "webpack-dev-server --inline --hot --compress --history-api-fallback --config tools/console.dev.config.js",
     "build": "webpack --progress --hide-modules --config tools/console.build.config.js",
-    "dist": "webpack --progress --hide-modules --config tools/console.dist.config.js",
     "ks3": "node tools/ks3.upload.js"
   },
   "license": "ISC",

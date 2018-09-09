@@ -99,7 +99,7 @@
                                             this.$Modal.confirm({
                                                 title: '你确定要删除吗？',
                                                 onOk: () => {
-
+                                                    this.delete(params.row.id);
                                                 }
                                             })
                                         }
@@ -210,7 +210,6 @@
                     url: '/api/articles',
                     data: this.dealObj(this.trim(this.srhParam)),
                     success: (response) => {
-                        console.log(response)
                         this.pagination.total = response.total;
                         this.dataList = response.list;
                     }
@@ -248,9 +247,16 @@
                     }
                 })
             },
-
-            remove(){
-                console.log('remove');
+            // 删除文章
+            delete(id){
+                 this.ajax({
+                    type: 'delete',
+                    url: '/api/articles',
+                    data: {id:id},
+                    success: (response) => {
+                        this.search();
+                    }
+                })
             },
             // 创建
             goAdd(id){

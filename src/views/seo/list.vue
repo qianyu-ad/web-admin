@@ -117,7 +117,6 @@
                     url: '/api/category',
                     data: this.dealObj(this.trim(this.srhParam)),
                     success: (response) => {
-                        console.log(response)
                         this.dataList = response.list;
                     }
                 })

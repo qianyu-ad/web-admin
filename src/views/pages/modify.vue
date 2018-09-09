@@ -94,15 +94,12 @@
             },
             
             onEditorBlur(quill) {
-                console.log('editor blur!')
             },
             onEditorFocus(quill) {
             },
             onEditorReady(quill) {
-                console.log('editor ready!')
             },
             onEditorChange({ quill, html, text }) {
-                console.log('editor change!')
             this.content = html
             },
 

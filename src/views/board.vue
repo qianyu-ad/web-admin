@@ -78,18 +78,11 @@
             }
         },
         methods: {
-            test(){
-                console.log('search')
-            },
             go(name){
                 this.$router.push({
                     name: name
                 })
-            },
-            checkPath(){
-
             }
-           
         },
         created(){
             

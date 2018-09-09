@@ -53,14 +53,6 @@
             }
         },
         methods: {
-            test(){
-                console.log('search')
-            },
-            go(name){
-                this.$router.push({
-                    name: name
-                })
-            },
             // w登录
             login(){
                 this.ajax({
@@ -68,7 +60,6 @@
                     url: '/api/login',
                     data: this.trim(this.user),
                     success: (response) => {
-                        console.log(response)
                         this.$router.push({
                             name: 'pages_list'
                         })
