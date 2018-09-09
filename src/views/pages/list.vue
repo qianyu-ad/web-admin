@@ -86,25 +86,25 @@
                         width: 220,
                         render: (h, params) => {
                             return h('div', [
-                                // h('Button', {
-                                //     props: {
-                                //         type: 'error',
-                                //         size: 'small'
-                                //     },
-                                //     style: {
-                                //         'margin-right': '6px'
-                                //     },
-                                //     "on": {
-                                //         click: () => {
-                                //             this.$Modal.confirm({
-                                //                 title: '你确定要删除吗？',
-                                //                 onOk: () => {
+                                h('Button', {
+                                    props: {
+                                        type: 'error',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        'margin-right': '6px'
+                                    },
+                                    "on": {
+                                        click: () => {
+                                            this.$Modal.confirm({
+                                                title: '你确定要删除吗？',
+                                                onOk: () => {
 
-                                //                 }
-                                //             })
-                                //         }
-                                //     }
-                                // }, '删除'),
+                                                }
+                                            })
+                                        }
+                                    }
+                                }, '删除'),
                                 h('Button', {
                                     props: {
                                         type: 'warning',
@@ -232,7 +232,7 @@
                 this.srhParam.page = 1;
                 this.search();
             },
-
+            // 上线下线
             updateStatus(id, status){
                 let param = {
                     id: id,
@@ -249,6 +249,9 @@
                 })
             },
 
+            remove(){
+                console.log('remove');
+            },
             // 创建
             goAdd(id){
                 this.$router.push({

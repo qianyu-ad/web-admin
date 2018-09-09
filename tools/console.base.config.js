@@ -16,11 +16,11 @@ module.exports = {
     },
     devServer: {
         host: 'a.com',
-        port: 8001,
+        port: 8002,
         // open: true, //自trademanage动打开浏览器，不需要可以去掉
         proxy: {//接口代理
             '/api': {
-                target: 'http://192.168.1.116:5000',
+                target: 'http://admin.caishoubin.com:5000',
                 changeOrigin: true,
                 secure: false
             }
