@@ -11,6 +11,9 @@ import categoryList from "./views/category/list.vue";
 import seo from "./views/seo/index.vue";
 import seoList from "./views/seo/list.vue";
 
+import site from "./views/site/index.vue";
+import siteList from "./views/site/list.vue";
+
 const routers = [
     {
         path: "/login",
@@ -45,6 +48,20 @@ const routers = [
                         path: "edit",
                         name: "pages_edit",
                         component: pagesModify,
+                        meta: {}
+                    }
+                ]
+            },
+            {
+                path: "site",
+                name: "site",
+                component: site,
+                meta: {},
+                children: [
+                    {
+                        path: "list",
+                        name: "site_list",
+                        component: siteList,
                         meta: {}
                     }
                 ]

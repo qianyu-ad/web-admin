@@ -24,6 +24,14 @@
             <div class="ct-content">
                 
                 <Form :model="param" :label-width="80">
+                    <FormItem label="网站">
+                        <Select v-model="param.type" style="width:350px">
+                            <Option value="tec">技术</Option>
+                            <Option value="xxx">社交</Option>
+                            <Option value="xxx">婚恋</Option>
+                            <!-- <Option v-for="item in typelist" :value="item.id" :key="item.id">{{ item.name }}</Option> -->
+                        </Select>
+                    </FormItem>
                     <FormItem label="分类名">
                         <Input v-model="param.name" style="width:350px" placeholder="请输入分类名"></Input>
                     </FormItem>

@@ -6,7 +6,7 @@
 <template>
     <div>
         <div class="w-title">
-            Seo列表
+            网站列表
         </div>
         <div class="w-body">
             <div class="w-srh clearfix">
@@ -18,20 +18,16 @@
         <Modal v-model="modifyModal"
             :title="modifyTitle"
             :mask-closable="false"
-            width="600"
+            width="500"
             @on-ok="submit"
             :styles="{top: '60px'}">
             <div class="ct-content">
                 <Form :model="param" :label-width="80">
-                    <!-- 每个类型是一个网站 -->
-                    <FormItem label="名称">
-                        <Input v-model="param.name" style="width:450px" placeholder="请输入分类名"></Input>
+                    <FormItem label="网站名">
+                        <Input v-model="param.name" style="width:350px" placeholder="请输入网站名"></Input>
                     </FormItem>
-                    <FormItem label="keywords">
-                        <Input type="textarea" rows="5" v-model="param.keywords" style="width:450px;" placeholder="请输入分类名"></Input>
-                    </FormItem>
-                    <FormItem label="description">
-                        <Input type="textarea" rows="5" v-model="param.description" style="width:450px;" placeholder="请输入分类名"></Input>
+                    <FormItem label="网站code">
+                        <Input v-model="param.code" style="width:350px" placeholder="请输入网站code"></Input>
                     </FormItem>
                 </Form>
                 
@@ -49,12 +45,12 @@
                         key: 'id'
                     },
                     {
-                        title: '名称',
+                        title: '网站名',
                         key: 'name'
                     },
                     {
-                        title: 'Keywords',
-                        key: 'keywords'
+                        title: '网站code',
+                        key: 'code'
                     },
                     {
                         title: 'Description',
