@@ -25,10 +25,9 @@
                 
                 <Form :model="param" :label-width="80">
                     <FormItem label="网站">
-                        <Select v-model="param.type" style="width:350px">
-                            <Option value="tec">技术</Option>
-                            <Option value="xxx">社交</Option>
-                            <Option value="xxx">婚恋</Option>
+                        <Select v-model="param.siteCode" style="width:350px">
+                            <Option v-for="item in siteList" value="tec" :value="item.code" :key="item.id">{{item.name}}</Option>
+                            
                             <!-- <Option v-for="item in typelist" :value="item.id" :key="item.id">{{ item.name }}</Option> -->
                         </Select>
                     </FormItem>
@@ -49,6 +48,10 @@
                     {
                         title: 'ID',
                         key: 'id'
+                    },
+                    {
+                        title: '网站',
+                        key: 'siteCode'
                     },
                     {
                         title: 'Name',
@@ -99,18 +102,34 @@
                 ],
                 dataList: [],
 
+                siteList: [],
+
                 modifyModal: false,
                 modifyTitle: '',
                 param: {
-                    name: ''
+                    name: '',
+                    siteCode: ''
                 }
             }
         },
         created(){
-            
+            this.getSiteList();
             this.search();
         },
         methods: {
+
+            // 查询网站列表
+            getSiteList(){
+                this.ajax({
+                    type: 'get',
+                    url: '/api/site',
+                    data: this.dealObj(this.trim(this.srhParam)),
+                    success: (response) => {
+                        this.siteList = response.list;
+                        
+                    }
+                })
+            },
 
             // 查询
             search(){
@@ -130,6 +149,7 @@
                 this.modifyTitle = '新建';
                 this.param.id = '';
                 this.param.name = '';
+                this.param.siteCode = '';
             },
             // 编辑
             edit(item){
@@ -137,6 +157,7 @@
                 this.modifyTitle = '编辑';
                 this.param.id = item.id;
                 this.param.name = item.name;
+                this.param.siteCode = item.siteCode;
             },
             submit(){
                 this.ajax({
@@ -157,7 +178,9 @@
                         this.search();
                     }
                 })
-            }
+            },
+
+
            
         }
         

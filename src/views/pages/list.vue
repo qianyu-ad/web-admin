@@ -13,7 +13,7 @@
                 <Select class="pull-left mar-r" v-model="srhParam.status" slot="append" style="width: 120px" placeholder="状态">
                     <Option :value="item.id" :key="item.id" v-for="item in statusList">{{item.name}}</Option>
                 </Select>
-                <Select class="pull-left mar-r" v-model="srhParam.category" slot="append" style="width: 200px" placeholder="分类">
+                <Select class="pull-left mar-r" v-model="srhParam.categoryId" slot="append" style="width: 200px" placeholder="分类">
                     <Option v-for="item in categoryList" :value="item.id" :key="item.id">{{ item.name }}</Option>
                 </Select>
 
@@ -53,7 +53,7 @@
                 srhParam: {
                     id : '',
                     status :'',
-                    category :''
+                    categoryId :''
                 },
                 tableHeader:[
                     {
@@ -66,7 +66,21 @@
                     },
                     {
                         title: '分类',
-                        key: 'categoryName'
+                        // key: 'categoryName'
+                        render: (h, params) => {
+                            return h('div', [
+                                h('span', {}, this.categoryObj[params.row.categoryId])
+                            ]);
+                        }
+                    },
+                    {
+                        title: 'SEO',
+                        // key: 'categoryName'
+                        render: (h, params) => {
+                            return h('div', [
+                                h('span', {}, this.seoObj[params.row.seoId])
+                            ]);
+                        }
                     },
                     {
                         title: '状态',
@@ -160,17 +174,17 @@
                                         }
                                     }
                                 }, '编辑'),
-                                h('Button', {
-                                    props: {
-                                        type: 'default',
-                                        size: 'small'
-                                    },
-                                    "on": {
-                                        click: () => {
-                                            // self.goDetail(params.row);
-                                        }
-                                    }
-                                }, '详情')
+                                // h('Button', {
+                                //     props: {
+                                //         type: 'default',
+                                //         size: 'small'
+                                //     },
+                                //     "on": {
+                                //         click: () => {
+                                //             // self.goDetail(params.row);
+                                //         }
+                                //     }
+                                // }, '详情')
                                 
                             ]);
                         }
@@ -178,11 +192,15 @@
                 ],
                 dataList: [],
 
-                categoryList:[]
+                categoryList:[],
+
+                seoObj: '',
+                categoryObj: ''
             }
         },
         created(){
             this.getCategory();
+            this.getSeoList();
             this.doSearch();
         },
         methods: {
@@ -196,7 +214,31 @@
                     success: (response) => {
                         this.categoryList = response.list;
 
+                        let obj = {};
+                        response.list.forEach((item) => {
+                            obj[item.id] = item.name;
+                        });
 
+                        this.categoryObj = obj;
+                    }
+                })
+            },
+
+            // 查询SEO列表
+            getSeoList(){
+                this.ajax({
+                    type: 'get',
+                    url: '/api/seo',
+                    data: this.dealObj(this.trim(this.srhParam)),
+                    success: (response) => {
+                        this.seoList = response.list;
+
+                        let obj = {};
+                        response.list.forEach((item) => {
+                            obj[item.id] = item.name;
+                        });
+
+                        this.seoObj = obj;
                     }
                 })
             },
@@ -277,7 +319,7 @@
             // 重置
             reset(){
                 this.srhParam.id = '';
-                this.srhParam.category = '';
+                this.srhParam.categoryId = '';
                 this.srhParam.status = '';
                 this.doSearch()
             },

@@ -36,14 +36,14 @@
     }
     .cl-l{
         float: left;
-        width:110px;
+        width:60px;
         line-height: 30px;
         font-size: 14px;
         text-align: right;
         font-weight: 700;
     }
     .cl-r{
-        padding-left: 120px;
+        padding-left: 70px;
     }
     .ivu-radio-wrapper{
         margin-top:6px;
@@ -65,25 +65,16 @@
             <div class="cl clearfix">
                 <div class="cl-l">分类</div>
                 <div class="cl-r">
-                    <RadioGroup v-model="param.category">
-                        <Radio v-for="item in categoryList">{{ item.name }}</Radio>
-                        <Radio v-for="i in 12" :label='i'>{{'测试' + i}}</Radio>
+                    <RadioGroup v-model="param.categoryId">
+                        <Radio v-for="item in categoryList" :label='item.id'>{{ item.name }}</Radio>
                     </RadioGroup>
                 </div>
             </div>
             <div class="cl clearfix">
-                <div class="cl-l">SEO_keywords</div>
+                <div class="cl-l">SEO</div>
                 <div class="cl-r">
-                    <RadioGroup v-model="param.keywords">
-                        <Radio v-for="i in 12" :label='i'>{{'测试' + i}}</Radio>
-                    </RadioGroup>
-                </div>
-            </div>
-            <div class="cl clearfix">
-                <div class="cl-l">SEO_description</div>
-                <div class="cl-r">
-                    <RadioGroup v-model="param.description">
-                        <Radio v-for="i in 32" :label='i'>{{'测试' + i}}</Radio>
+                    <RadioGroup v-model="param.seoId">
+                        <Radio v-for="item in seoList" :label='item.id'>{{ item.name }}</Radio>
                     </RadioGroup>
                 </div>
             </div>
@@ -113,18 +104,38 @@
         data() {
             return {
                 param: {
-                    category: '',
+                    categoryId: '',
+                    seoId: '',
                     title: '',
                     content: ''
                 },
                 editorOption: {
                   // some quill options
                 },
-                categoryList: []
+                categoryList: [],
+                seoList: []
             }
         },
-        methods: {
+         created(){
+            this.getCategory();
+            this.getSeoList();
 
+            if(this.$route.query.id) {
+                this.param.id = this.$route.query.id;
+                this.search();
+            }
+            
+        },
+        computed: {
+            editor() {
+                return this.$refs.myQuillEditor.quill
+            }
+        },
+        mounted() {
+
+        },
+        methods: {
+            // 查分类
             getCategory(){
                 this.ajax({
                     type: 'get',
@@ -138,6 +149,18 @@
                 })
             },
 
+            // 查询SEO列表
+            getSeoList(){
+                this.ajax({
+                    type: 'get',
+                    url: '/api/seo',
+                    data: this.dealObj(this.trim(this.srhParam)),
+                    success: (response) => {
+                        this.seoList = response.list;
+                    }
+                })
+            },
+
             search(){
                 this.ajax({
                     type: 'get',
@@ -146,7 +169,8 @@
                     success: (response) => {
                         this.param.title = response.title;
                         this.param.content = response.content;
-                        this.param.category = response.category;
+                        this.param.categoryId = response.categoryId;
+                        this.param.seoId = response.seoId;
                     }
                 })
             },
@@ -164,7 +188,7 @@
             // 发布
             submit(){
                 let param = this.trim(this.cloneObj(this.param));
-                if(!param.category || !param.keywords || !param.description || !param.title || !param.content){
+                if(!param.categoryId || !param.title || !param.content){
                     this.$Message.error('请输入完整的信息');
                     return false;
                 }
@@ -184,22 +208,6 @@
                 }) 
             }
         },
-        created(){
-            this.getCategory();
-
-            if(this.$route.query.id) {
-                this.param.id = this.$route.query.id;
-                this.search();
-            }
-            
-        },
-        computed: {
-            editor() {
-                return this.$refs.myQuillEditor.quill
-            }
-        },
-        mounted() {
-
-        }
+       
     }
 </script>

@@ -19,8 +19,9 @@ module.exports = {
         port: 8002,
         // open: true, //自trademanage动打开浏览器，不需要可以去掉
         proxy: {//接口代理
-            '/api': {
-                target: 'http://admin.caishoubin.com:5000',
+            '/api/*': {
+                // target: 'http://admin.caishoubin.com:5000',
+                target: 'http://192.168.1.8:5000',
                 changeOrigin: true,
                 secure: false
             }

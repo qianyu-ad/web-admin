@@ -29,6 +29,9 @@
                     <FormItem label="网站code">
                         <Input v-model="param.code" style="width:350px" placeholder="请输入网站code"></Input>
                     </FormItem>
+                    <FormItem label="网站描述">
+                        <Input v-model="param.desc" style="width:350px" placeholder="请输入网站描述" type="textarea"></Input>
+                    </FormItem>
                 </Form>
                 
             </div>
@@ -53,8 +56,8 @@
                         key: 'code'
                     },
                     {
-                        title: 'Description',
-                        key: 'description'
+                        title: '描述',
+                        key: 'desc'
                     },
                     {
                         title: '操作',
@@ -114,11 +117,11 @@
         },
         methods: {
 
-            // 查询SEO列表
+            // 查询网站列表
             search(){
                 this.ajax({
                     type: 'get',
-                    url: '/api/seo',
+                    url: '/api/site',
                     data: this.dealObj(this.trim(this.srhParam)),
                     success: (response) => {
                         this.dataList = response.list;
@@ -139,11 +142,13 @@
                 this.modifyTitle = '编辑';
                 this.param.id = item.id;
                 this.param.name = item.name;
+                this.param.code = item.code;
+                this.param.desc = item.desc;
             },
             submit(){
                 this.ajax({
                     type: 'post',
-                    url: '/api/seo',
+                    url: '/api/site',
                     data: this.dealObj(this.trim(this.param)),
                     success: (response) => {
                         this.search();
@@ -153,7 +158,7 @@
             delete(id){
                 this.ajax({
                     type: 'delete',
-                    url: '/api/seo',
+                    url: '/api/site',
                     data: {id:id},
                     success: (response) => {
                         this.search();

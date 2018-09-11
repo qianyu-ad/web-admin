@@ -28,10 +28,13 @@
                         <Input v-model="param.name" style="width:450px" placeholder="请输入分类名"></Input>
                     </FormItem>
                     <FormItem label="keywords">
-                        <Input type="textarea" rows="5" v-model="param.keywords" style="width:450px;" placeholder="请输入分类名"></Input>
+                        <Input type="textarea" :rows="5" v-model="param.keywords" style="width:450px;" placeholder="请输入keywords"></Input>
                     </FormItem>
                     <FormItem label="description">
-                        <Input type="textarea" rows="5" v-model="param.description" style="width:450px;" placeholder="请输入分类名"></Input>
+                        <Input type="textarea" :rows="5" v-model="param.description" style="width:450px;" placeholder="请输入description"></Input>
+                    </FormItem>
+                    <FormItem label="描述">
+                        <Input type="textarea" :rows="5" v-model="param.desc" style="width:450px;" placeholder="请输入描述"></Input>
                     </FormItem>
                 </Form>
                 
@@ -59,6 +62,10 @@
                     {
                         title: 'Description',
                         key: 'description'
+                    },
+                    {
+                        title: '描述',
+                        key: 'desc'
                     },
                     {
                         title: '操作',
@@ -108,7 +115,10 @@
                 modifyModal: false,
                 modifyTitle: '',
                 param: {
-                    name: ''
+                    name: '',
+                    keywords: '',
+                    description: '',
+                    desc: ''
                 }
             }
         },
@@ -136,6 +146,9 @@
                 this.modifyTitle = '新建';
                 this.param.id = '';
                 this.param.name = '';
+                this.param.keywords = '';
+                this.param.description = '';
+                this.param.desc = '';
             },
             // 编辑
             edit(item){
@@ -143,6 +156,9 @@
                 this.modifyTitle = '编辑';
                 this.param.id = item.id;
                 this.param.name = item.name;
+                this.param.keywords = item.keywords;
+                this.param.description = item.description;
+                this.param.desc = item.desc;
             },
             submit(){
                 this.ajax({
