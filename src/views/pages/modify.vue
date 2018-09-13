@@ -198,12 +198,15 @@
                     data: this.param,
                     success: (response) => {
                         this.$Message.success('操作成功');
+                        this.$router.push({
+                            name: 'pages_list'
+                        });
                     }
                 })
             },
             // 返回
             back(){
-               this.$router.push({
+                this.$router.push({
                     name: 'pages_list'
                 }) 
             }
