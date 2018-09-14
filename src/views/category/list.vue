@@ -34,6 +34,9 @@
                     <FormItem label="分类名">
                         <Input v-model="param.name" style="width:350px" placeholder="请输入分类名"></Input>
                     </FormItem>
+                    <FormItem label="Code">
+                        <Input v-model="param.code" style="width:350px" placeholder="请输入code"></Input>
+                    </FormItem>
                 </Form>
                 
             </div>
@@ -54,8 +57,12 @@
                         key: 'siteCode'
                     },
                     {
-                        title: 'Name',
+                        title: '分类',
                         key: 'name'
+                    },
+                    {
+                        title: 'code',
+                        key: 'code'
                     },
                     {
                         title: '操作',
@@ -149,6 +156,7 @@
                 this.modifyTitle = '新建';
                 this.param.id = '';
                 this.param.name = '';
+                this.param.code = '';
                 this.param.siteCode = '';
             },
             // 编辑
@@ -157,6 +165,7 @@
                 this.modifyTitle = '编辑';
                 this.param.id = item.id;
                 this.param.name = item.name;
+                this.param.code = item.code;
                 this.param.siteCode = item.siteCode;
             },
             submit(){
