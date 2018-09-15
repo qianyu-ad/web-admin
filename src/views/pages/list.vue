@@ -96,6 +96,10 @@
                         }
                     },
                     {
+                        title: '阅读次数',
+                        key: 'count'                        
+                    },
+                    {
                         title: '操作',
                         width: 220,
                         render: (h, params) => {
