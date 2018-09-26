@@ -178,6 +178,21 @@
                                         }
                                     }
                                 }, '编辑'),
+                                h('Button', {
+                                    props: {
+                                        type: 'primary',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        'margin-right': '6px'
+                                    },
+                                    "on": {
+                                        click: () => {
+                                            // self.goDetail(params.row);
+                                            this.goEditUm(params.row.id)
+                                        }
+                                    }
+                                }, '编辑UM'),
                                 // h('Button', {
                                 //     props: {
                                 //         type: 'default',
@@ -317,6 +332,16 @@
                 };
                 this.$router.push({
                     name: 'pages_edit',
+                    query: query
+                })
+            },
+            // 去编辑UM
+            goEditUm(id){
+                let query = {
+                    id: id
+                };
+                this.$router.push({
+                    name: 'pages_umedit',
                     query: query
                 })
             },

@@ -1,9 +1,8 @@
 import login from "./views/login.vue";
 import board from "./views/board.vue";
 
-import pagesIndex from "./views/pages/index.vue";
-import pagesList from "./views/pages/list.vue";
-import pagesModify from "./views/pages/modify.vue";
+import site from "./views/site/index.vue";
+import siteList from "./views/site/list.vue";
 
 import category from "./views/category/index.vue";
 import categoryList from "./views/category/list.vue";
@@ -11,8 +10,10 @@ import categoryList from "./views/category/list.vue";
 import seo from "./views/seo/index.vue";
 import seoList from "./views/seo/list.vue";
 
-import site from "./views/site/index.vue";
-import siteList from "./views/site/list.vue";
+import pagesIndex from "./views/pages/index.vue";
+import pagesList from "./views/pages/list.vue";
+import pagesModify from "./views/pages/modify.vue";
+import pagesUm from "./views/pages/um.vue";
 
 const routers = [
     {
@@ -48,6 +49,18 @@ const routers = [
                         path: "edit",
                         name: "pages_edit",
                         component: pagesModify,
+                        meta: {}
+                    },
+                    {
+                        path: "umadd",
+                        name: "pages_umadd",
+                        component: pagesUm,
+                        meta: {}
+                    },
+                    {
+                        path: "umedit",
+                        name: "pages_umedit",
+                        component: pagesUm,
                         meta: {}
                     }
                 ]
