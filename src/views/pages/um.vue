@@ -188,6 +188,7 @@
                     return false;
                 }
                 param.content = UM.getEditor('myEditor').getAllHtml();
+                console.log(param.content);
                 this.ajax({
                     type: 'post',
                     url: '/api/articles',
