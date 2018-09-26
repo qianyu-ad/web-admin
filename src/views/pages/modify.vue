@@ -175,7 +175,17 @@
                     this.$Message.error('请输入完整的信息');
                     return false;
                 }
-                param.content = UM.getEditor('myEditor').getAllHtml();
+                // param.content = UM.getEditor('myEditor').getAllHtml();
+                let reg = /(<head>)(.*)(<\/head>)(.*)/g;
+
+                let arr = reg.exec(UM.getEditor('myEditor').getAllHtml());
+
+                let scriptReg = /script/g;
+                let arr2 = arr[2].replace(scriptReg,'tt');
+                let s = arr[1] + arr2 + arr[3] + arr[4];
+
+                param.content = s;
+
                 this.ajax({
                     type: 'post',
                     url: '/api/articles',
