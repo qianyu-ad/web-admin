@@ -316,7 +316,7 @@
                     id: id
                 };
                 this.$router.push({
-                    name: 'pages_umedit',
+                    name: 'pages_edit',
                     query: query
                 })
             },
