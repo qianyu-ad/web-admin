@@ -1,4 +1,5 @@
 <style scoped>
+    
     .modify-cont{
         padding:10px 15px 70px;
     }
@@ -15,7 +16,7 @@
         bottom:0;
         left: 180px;
         right: 0;
-        z-index: 22;
+        z-index: 2222;
         height:50px;
         background-color: #f0f0f0;
         text-align: center;
@@ -49,10 +50,8 @@
         margin-top:6px;
         margin-bottom: 6px;
     }
-</style>
-<style>
-    .ql-container{
-        height: 480px !important;
+    .um-editor{
+        width: 100%;
     }
 </style>
 <template>
@@ -85,14 +84,12 @@
                     <Input v-model="param.title" placeholder="请输入标题" />
                 </div>
             </div>
-
-            <quill-editor v-model="param.content"
-                ref="myQuillEditor"
-                :options="editorOption"
-                @blur="onEditorBlur($event)"
-                @focus="onEditorFocus($event)"
-                @ready="onEditorReady($event)">
-            </quill-editor>
+            <!-- 富文本编辑器 -->
+            <div>
+                <!--style给定宽度可以影响编辑器的最终宽度-->
+                <script type="text/plain" id="myEditor" class="um-editor">
+                </script>
+            </div>
             <div class="cl-ctrl">
                 <Button type="primary" @click="submit">提交</Button>
             </div>
@@ -107,32 +104,27 @@
                     categoryId: '',
                     seoId: '',
                     title: '',
-                    content: ''
-                },
-                editorOption: {
-                  // some quill options
+                    // content: ''
                 },
                 categoryList: [],
-                seoList: []
+                seoList: [],
+                um: ''
             }
         },
          created(){
             this.getCategory();
             this.getSeoList();
-
             if(this.$route.query.id) {
                 this.param.id = this.$route.query.id;
                 this.search();
             }
-            
         },
-        computed: {
-            editor() {
-                return this.$refs.myQuillEditor.quill
-            }
+        destroyed(){
+            UM.getEditor('myEditor').destroy();
         },
         mounted() {
-
+            //实例化编辑器
+            this.um = UM.getEditor('myEditor');
         },
         methods: {
             // 查分类
@@ -168,9 +160,12 @@
                     data: {id: this.$route.query.id},
                     success: (response) => {
                         this.param.title = response.title;
-                        this.param.content = response.content;
+                        // this.param.content = response.content;
+
                         this.param.categoryId = response.categoryId;
                         this.param.seoId = response.seoId;
+
+                        this.um.execCommand('insertHtml', response.content)
                     }
                 })
             },
@@ -188,10 +183,11 @@
             // 发布
             submit(){
                 let param = this.trim(this.cloneObj(this.param));
-                if(!param.categoryId || !param.title || !param.content){
+                if(!param.categoryId || !param.title || !UM.getEditor('myEditor').getAllHtml()){
                     this.$Message.error('请输入完整的信息');
                     return false;
                 }
+                param.content = UM.getEditor('myEditor').getAllHtml();
                 this.ajax({
                     type: 'post',
                     url: '/api/articles',

@@ -101,7 +101,7 @@
                     },
                     {
                         title: '操作',
-                        width: 280,
+                        width: 220,
                         render: (h, params) => {
                             return h('div', [
                                 h('Button', {
@@ -178,21 +178,6 @@
                                         }
                                     }
                                 }, '编辑'),
-                                h('Button', {
-                                    props: {
-                                        type: 'primary',
-                                        size: 'small'
-                                    },
-                                    style: {
-                                        'margin-right': '6px'
-                                    },
-                                    "on": {
-                                        click: () => {
-                                            // self.goDetail(params.row);
-                                            this.goEditUm(params.row.id)
-                                        }
-                                    }
-                                }, '编辑UM'),
                                 // h('Button', {
                                 //     props: {
                                 //         type: 'default',
@@ -325,18 +310,8 @@
                     name: 'pages_add'
                 })
             },
-            // 去编辑
-            goEdit(id){
-                let query = {
-                    id: id
-                };
-                this.$router.push({
-                    name: 'pages_edit',
-                    query: query
-                })
-            },
             // 去编辑UM
-            goEditUm(id){
+            goEdit(id){
                 let query = {
                     id: id
                 };

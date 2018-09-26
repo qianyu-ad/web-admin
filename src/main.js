@@ -7,12 +7,12 @@ import store from './store/index.js';
 import util from './libs/util';
 import iView from 'iview';
 
-import VueQuillEditor from 'vue-quill-editor'
+// import VueQuillEditor from 'vue-quill-editor'
 
 // require styles
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
+// import 'quill/dist/quill.core.css'
+// import 'quill/dist/quill.snow.css'
+// import 'quill/dist/quill.bubble.css'
 
 
 import 'iview/dist/styles/iview.css';
@@ -26,7 +26,7 @@ Vue.mixin({
     methods: util
 });
 
-Vue.use(VueQuillEditor)
+// Vue.use(VueQuillEditor)
 
 // 开启debug模式
 Vue.config.debug = true;
