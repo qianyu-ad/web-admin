@@ -16,7 +16,7 @@
         bottom:0;
         left: 180px;
         right: 0;
-        z-index: 1122;
+        z-index: 2222;
         height:50px;
         background-color: #f0f0f0;
         text-align: center;
