@@ -165,7 +165,7 @@
                         this.param.categoryId = response.categoryId;
                         this.param.seoId = response.seoId;
 
-                        this.um.execCommand('insertHtml', value)
+                        this.um.execCommand('insertHtml', response.content)
                     }
                 })
             },
