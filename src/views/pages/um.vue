@@ -183,11 +183,11 @@
             // 发布
             submit(){
                 let param = this.trim(this.cloneObj(this.param));
-                if(!param.categoryId || !param.title || !UM.getEditor('myEditor').getAllHtml()){
+                if(!param.categoryId || !param.title || !this.um.getAllHtml()){
                     this.$Message.error('请输入完整的信息');
                     return false;
                 }
-                param.content = UM.getEditor('myEditor').getAllHtml();
+                param.content = this.um.getAllHtml();
                 this.ajax({
                     type: 'post',
                     url: '/api/articles',

@@ -101,7 +101,7 @@
                     },
                     {
                         title: '操作',
-                        width: 220,
+                        width: 280,
                         render: (h, params) => {
                             return h('div', [
                                 h('Button', {
