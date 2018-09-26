@@ -11,19 +11,7 @@
     .cl-cont{
         margin-bottom: 10px;
     }
-    .cl-ctrl{
-        position: fixed;
-        bottom:0;
-        left: 180px;
-        right: 0;
-        z-index: 2222;
-        height:50px;
-        background-color: #f0f0f0;
-        text-align: center;
-    }
-    .cl-ctrl .ivu-btn{
-        margin-top: 10px;
-    }
+    
     .col-3{
         float: left;
         width: 30%;
