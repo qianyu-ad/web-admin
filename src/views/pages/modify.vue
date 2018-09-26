@@ -195,7 +195,7 @@
                 this.ajax({
                     type: 'post',
                     url: '/api/articles',
-                    data: this.param,
+                    data: param,
                     success: (response) => {
                         this.$Message.success('操作成功');
                         this.$router.push({
