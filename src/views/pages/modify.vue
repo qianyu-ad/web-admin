@@ -184,7 +184,7 @@
                 // let arr2 = arr[2].replace(scriptReg,'tt');
                 // let s = arr[1] + arr2 + arr[3] + arr[4];
 
-                param.content = s;
+                // param.content = s;
 
                 this.ajax({
                     type: 'post',
