@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import axios from 'axios';
 import VueAxios from 'vue-axios'
 import routes from './router';
-import store from './store/index.js';
+// import store from './store/index.js';
 import util from './libs/util';
 import iView from 'iview';
 
@@ -37,7 +37,7 @@ const router = new VueRouter({
 })
 let app = new Vue({
     router,
-    store
+    // store
 }).$mount('#app');
 
 
