@@ -47,7 +47,8 @@
     .logout{
         position: absolute;
         bottom:15px;
-        left:15px;
+        left:20px;
+        width:140px;
     }
 </style>
 <template>
