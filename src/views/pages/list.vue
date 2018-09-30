@@ -101,7 +101,7 @@
                     },
                     {
                         title: '操作',
-                        width: 220,
+                        width: 290,
                         render: (h, params) => {
                             return h('div', [
                                 h('Button', {
@@ -178,17 +178,17 @@
                                         }
                                     }
                                 }, '编辑'),
-                                // h('Button', {
-                                //     props: {
-                                //         type: 'default',
-                                //         size: 'small'
-                                //     },
-                                //     "on": {
-                                //         click: () => {
-                                //             // self.goDetail(params.row);
-                                //         }
-                                //     }
-                                // }, '详情')
+                                h('Button', {
+                                    props: {
+                                        type: 'default',
+                                        size: 'small'
+                                    },
+                                    "on": {
+                                        click: () => {
+                                            window.open('http://tec.caishoubin.com/article/' + params.row.id);
+                                        }
+                                    }
+                                }, '详情')
                                 
                             ]);
                         }
