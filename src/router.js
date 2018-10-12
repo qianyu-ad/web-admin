@@ -7,9 +7,6 @@ import siteList from "./views/site/list.vue";
 import category from "./views/category/index.vue";
 import categoryList from "./views/category/list.vue";
 
-import seo from "./views/seo/index.vue";
-import seoList from "./views/seo/list.vue";
-
 import pagesIndex from "./views/pages/index.vue";
 import pagesList from "./views/pages/list.vue";
 import pagesModify from "./views/pages/modify.vue";
@@ -76,20 +73,6 @@ const routers = [
                         path: "list",
                         name: "category_list",
                         component: categoryList,
-                        meta: {}
-                    }
-                ]
-            },
-            {
-                path: "seo",
-                name: "seo",
-                component: seo,
-                meta: {},
-                children: [
-                    {
-                        path: "list",
-                        name: "seo_list",
-                        component: seoList,
                         meta: {}
                     }
                 ]

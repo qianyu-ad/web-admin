@@ -25,14 +25,14 @@
     }
     .cl-l{
         float: left;
-        width:60px;
+        width:100px;
         line-height: 30px;
         font-size: 14px;
         text-align: right;
         font-weight: 700;
     }
     .cl-r{
-        padding-left: 70px;
+        padding-left: 110px;
     }
     .ivu-radio-wrapper{
         margin-top:6px;
@@ -58,18 +58,21 @@
                 </div>
             </div>
             <div class="cl clearfix">
-                <div class="cl-l">SEO</div>
-                <div class="cl-r">
-                    <RadioGroup v-model="param.seoId">
-                        <Radio v-for="item in seoList" :label='item.id'>{{ item.name }}</Radio>
-                    </RadioGroup>
-                </div>
-            </div>
-
-            <div class="cl clearfix">
                 <div class="cl-l">标题</div>
                 <div class="cl-r">
                     <Input v-model="param.title" placeholder="请输入标题" />
+                </div>
+            </div>
+            <div class="cl clearfix">
+                <div class="cl-l">keywords</div>
+                <div class="cl-r">
+                    <Input v-model="param.keywords" placeholder="请输入keywords" />
+                </div>
+            </div>
+            <div class="cl clearfix">
+                <div class="cl-l">description</div>
+                <div class="cl-r">
+                    <Input v-model="param.description" placeholder="请输入description" />
                 </div>
             </div>
             <!-- 富文本编辑器 -->
@@ -90,18 +93,17 @@
             return {
                 param: {
                     categoryId: '',
-                    seoId: '',
                     title: '',
+                    keywords:'',
+                    description: '',
                     // content: ''
                 },
                 categoryList: [],
-                seoList: [],
                 um: ''
             }
         },
          created(){
             this.getCategory();
-            this.getSeoList();
             if(this.$route.query.id) {
                 this.param.id = this.$route.query.id;
                 this.search();
@@ -129,17 +131,6 @@
                 })
             },
 
-            // 查询SEO列表
-            getSeoList(){
-                this.ajax({
-                    type: 'get',
-                    url: '/api/seo',
-                    data: this.dealObj(this.trim(this.srhParam)),
-                    success: (response) => {
-                        this.seoList = response.list;
-                    }
-                })
-            },
 
             search(){
                 this.ajax({
@@ -148,10 +139,7 @@
                     data: {id: this.$route.query.id},
                     success: (response) => {
                         this.param.title = response.title;
-                        // this.param.content = response.content;
-
                         this.param.categoryId = response.categoryId;
-                        this.param.seoId = response.seoId;
 
                         this.um.execCommand('insertHtml', response.content)
                     }
@@ -176,15 +164,7 @@
                     return false;
                 }
                 param.content = UM.getEditor('myEditor').getContent();
-                // let reg = /(<head>)(.*)(<\/head>)(.*)/g;
 
-                // let arr = reg.exec(UM.getEditor('myEditor').getAllHtml());
-
-                // let scriptReg = /script/g;
-                // let arr2 = arr[2].replace(scriptReg,'tt');
-                // let s = arr[1] + arr2 + arr[3] + arr[4];
-
-                // param.content = s;
 
                 this.ajax({
                     type: 'post',

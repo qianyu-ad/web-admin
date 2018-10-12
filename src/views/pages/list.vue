@@ -74,15 +74,6 @@
                         }
                     },
                     {
-                        title: 'SEO',
-                        // key: 'categoryName'
-                        render: (h, params) => {
-                            return h('div', [
-                                h('span', {}, this.seoObj[params.row.seoId])
-                            ]);
-                        }
-                    },
-                    {
                         title: '状态',
                         // 0 已删除，1 已发布，2待发布
                         render: (h, params) => {
@@ -198,13 +189,11 @@
 
                 categoryList:[],
 
-                seoObj: '',
                 categoryObj: ''
             }
         },
         created(){
             this.getCategory();
-            this.getSeoList();
             this.doSearch();
         },
         methods: {
@@ -224,25 +213,6 @@
                         });
 
                         this.categoryObj = obj;
-                    }
-                })
-            },
-
-            // 查询SEO列表
-            getSeoList(){
-                this.ajax({
-                    type: 'get',
-                    url: '/api/seo',
-                    data: this.dealObj(this.trim(this.srhParam)),
-                    success: (response) => {
-                        this.seoList = response.list;
-
-                        let obj = {};
-                        response.list.forEach((item) => {
-                            obj[item.id] = item.name;
-                        });
-
-                        this.seoObj = obj;
                     }
                 })
             },
