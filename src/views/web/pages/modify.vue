@@ -173,7 +173,7 @@
                     success: (response) => {
                         this.$Message.success('操作成功');
                         this.$router.push({
-                            name: 'pages_list'
+                            name: 'web_pages_list'
                         });
                     }
                 })
@@ -181,7 +181,7 @@
             // 返回
             back(){
                 this.$router.push({
-                    name: 'pages_list'
+                    name: 'weeb_pages_list'
                 }) 
             }
         },

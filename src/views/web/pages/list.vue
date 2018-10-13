@@ -277,7 +277,7 @@
             // 创建
             goAdd(id){
                 this.$router.push({
-                    name: 'pages_add'
+                    name: 'web_pages_add'
                 })
             },
             // 去编辑UM
@@ -286,7 +286,7 @@
                     id: id
                 };
                 this.$router.push({
-                    name: 'pages_edit',
+                    name: 'web_pages_edit',
                     query: query
                 })
             },

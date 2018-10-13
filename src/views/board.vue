@@ -1,7 +1,7 @@
 <style scoped>
     .sidebar{
         position: fixed;
-        width: 180px;
+        width: 140px;
         top:0;
         bottom:0;
         left: 0;
@@ -13,7 +13,7 @@
         background: url(../img/1.png) no-repeat 15px center /100px auto;
     }
     .q-aside-product{
-        width: 180px;
+        width: 140px;
         overflow-y: auto;
         position: absolute;
         top:50px;
@@ -39,7 +39,7 @@
         color:#06C;
     }
     .q-content{
-        padding-left: 180px;
+        padding-left: 140px;
     }
     .q-content-in{
         position: relative;
@@ -47,8 +47,8 @@
     .logout{
         position: absolute;
         bottom:15px;
-        left:20px;
-        width:140px;
+        left:10px;
+        width:120px;
     }
 </style>
 <template>
@@ -56,10 +56,10 @@
         <aside class="sidebar">
             <div class="q-aside-logo"></div>
             <ul class="q-aside-product">
-                <li class="q-aside-product-item" :class="{'active':$route.name=='site_list'}" @click="go('site_list')">网站管理</li>
+                <li class="q-aside-product-item" :class="{'active':$route.path.indexOf('/board/web/')>-1}" @click="go('web_site_list')">网站管理</li>
                 <li class="q-aside-product-item" :class="{'active':$route.name=='category_list'}" @click="go('category_list')">分类管理</li>
-                <li class="q-aside-product-item" :class="{'active':$route.name=='pages_list'}" @click="go('pages_list')">页面管理</li>
-                <li class="q-aside-product-item" :class="{'active':$route.name=='pages_add'}" @click="go('pages_add')">新增页面</li>
+                
+                
             </ul>
             <Button class="logout" type="warning" @click="logout">退出</Button>
         </aside>
@@ -108,7 +108,7 @@
             }
         },
         created(){
-            
+            console.log(this.$route)
         }
     }
 </script>

@@ -33,7 +33,7 @@
                     <Input @keyup.enter="login" class="login-input" v-model="user.username" placeholder="用户名/手机号/邮箱"></Input>
                 </FormItem>
                 <FormItem label="密码">
-                    <Input @keyup.enter="login" type="password" class="login-input" v-model="user.password" placeholder="密码"></Input>
+                    <Input @keyup.enter="login" type="password" class="login-input" @keyup.enter.native="login" v-model="user.password" placeholder="密码"></Input>
                 </FormItem>
                 <FormItem>
                     <Button type="primary" @click="login" :disabled="!user.username||!user.password">登录</Button>
@@ -61,7 +61,7 @@
                     data: this.trim(this.user),
                     success: (response) => {
                         this.$router.push({
-                            name: 'pages_list'
+                            name: 'web_pages_list'
                         })
                     },
                     error: ()=>{}

@@ -21,7 +21,7 @@ module.exports = {
         proxy: {//接口代理
             '/api/*': {
                 // target: 'http://admin.caishoubin.com:5000',
-                target: 'http://192.168.1.117:5000',
+                target: 'http://192.168.125.11:5000',
                 changeOrigin: true,
                 secure: false
             }
